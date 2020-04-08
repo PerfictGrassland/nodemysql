@@ -8,11 +8,11 @@ const hostname = '114.215.139.176';
 ///数据库操作
 var mysql = require('mysql');
 var TEST_DATABASE = 'runoob';
-var TEST_TABLE = 'gradeMes';
+var TEST_TABLE = 'grademes';
 var connection = mysql.createConnection({
     //host:'127.0.0.1',
     host: hostname,
-    //port: '3306',
+    port: '3306',
     user: 'root',
     password: '123456',
     // database: 'runoob'
@@ -49,11 +49,11 @@ function toAddDatas() {
         return err;
     });
 }
-toAddDatas().then((res) => {
-    console.log("插入结果1：", res);
-}).catch((err) => {
-    console.log("插入结果2：", err);
-});
+// toAddDatas().then((res) => {
+//     console.log("插入结果1：", res);
+// }).catch((err) => {
+//     console.log("插入结果2：", err);
+// });
 // 删除
 function toDeleteDatas() {
     return singleQuery(connection, `delete from ${TEST_TABLE} where id = 7`).then((res) => {
@@ -95,11 +95,11 @@ function toCheckDatas() {
     });
 }
 
-// toCheckDatas().then((res) => {
-//     console.log("测试结果1：", res);
-// }).catch((err) => {
-//     console.log("测试结果2：", err);
-// });
+toCheckDatas().then((res) => {
+    console.log("测试结果1：", res);
+}).catch((err) => {
+    console.log("测试结果2：", err);
+});
 
 // 原始方法
 // connection.query(`select * from ${TEST_TABLE}`, function(error, results, fields) {
@@ -119,7 +119,7 @@ app.all('*', function(req, res, next) {
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', function(req, res) {
-    console.log("传递参数：", req);
+    //console.log("传递参数：", req);
     let result = {
         status: 1,
         data: {
@@ -171,8 +171,8 @@ app.get('/mysql', async(req, res) => {
             }
         }
     }
-    console.log("数据库数据");
     result = JSON.stringify(result);
+    console.log("数据库数据", result);
     res.send(result);
 })
 

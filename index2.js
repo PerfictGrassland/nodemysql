@@ -47,11 +47,11 @@ function toAddDatas() {
         return err;
     });
 }
-toAddDatas().then((res) => {
-    console.log("插入结果1：", res);
-}).catch((err) => {
-    console.log("插入结果2：", err);
-});
+// toAddDatas().then((res) => {
+//     console.log("插入结果1：", res);
+// }).catch((err) => {
+//     console.log("插入结果2：", err);
+// });
 // 删除
 function toDeleteDatas() {
     return singleQuery(connection, `delete from ${TEST_TABLE} where id = 7`).then((res) => {
